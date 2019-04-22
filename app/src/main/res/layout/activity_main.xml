@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <TextView android:id="@+id/tv_url"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        tools:context=".MainActivity"/>
+
+    <!--<ScrollView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:id="@+id/movie_grid_data">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/movie_grid_data"-->
+    <!--android:layout_height="fill_parent"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:padding="5dp"-->
+    <!--tools:context=".MainActivity"-->
+    <!--android:layout_marginTop="60dp">-->
+    <!--</TextView>-->
+    <GridView
+        android:id="@+id/movie_grid_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:numColumns="2"
+        android:layout_alignBottom="@+id/tv_url">
+    </GridView>
+
+    <!--</ScrollView>-->
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Click me!"
+        android:layout_alignBottom="@+id/movie_grid_data"
+        tools:context=".MainActivity" />
+
+    <ImageView
+        android:id="@+id/movie_image"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"/>
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight=".4"-->
+    <!--android:adjustViewBounds="true"-->
+    <!--android:scaleType="fitXY"/>-->
+
+</RelativeLayout>
