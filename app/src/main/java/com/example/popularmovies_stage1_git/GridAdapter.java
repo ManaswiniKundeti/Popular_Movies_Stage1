@@ -1,6 +1,7 @@
 package com.example.popularmovies_stage1_git;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,22 +9,23 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 public class GridAdapter extends BaseAdapter {
 
     private final Context context;
-    private final JSONArray movieList;
+    private final List<Movie> movieList;
 
-    public GridAdapter(Context context, JSONArray movieList) {
+    GridAdapter(Context context, List<Movie> movieList) {
         this.context = context;
         this.movieList = movieList;
     }
 
     @Override
     public int getCount() {
-        return this.movieList.length();
+        return movieList.size();
     }
 
     @Override
@@ -32,34 +34,26 @@ public class GridAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
-        JSONObject currentJson = new JSONObject();
-        try{
-            currentJson = this.movieList.getJSONObject(position);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return currentJson;
+    public Movie getItem(int position) {
+        return movieList.get(position);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-        View gridView = inflater.inflate(R.layout.grid_adapter, null);
-        JSONObject SingleObject = (JSONObject) getItem(position);
-
-        //set grid_adapter elements to variables
-        ImageView movieImageView = (ImageView) gridView.findViewById(R.id.movie_image);
-        TextView movieName = (TextView) gridView.findViewById(R.id.movie_name);
-
-        //set to adapter image_view and text_view
-        try{
-            new ImageFromUrl(movieImageView).execute(SingleObject.getString("image_thumb_from_JSON"));
-            movieName.setText(String.valueOf(position));
-
-        } catch (Exception e){
-            e.printStackTrace();
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).
+                    inflate(R.layout.grid_adapter, parent, false);
         }
-        return gridView;
+
+        TextView movieTextView = convertView.findViewById(R.id.movie_text_view);
+        ImageView movieImageView = convertView.findViewById(R.id.movie_image_view);
+
+        Movie movie = movieList.get(position);
+        movieTextView.setText(movie.getMovieName());
+        Picasso.get()
+                .load(Uri.parse(movie.getMovieImageUri()))
+                .into(movieImageView);
+
+        return convertView;
     }
 }
