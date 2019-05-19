@@ -69,15 +69,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void onItemClick(MenuItem item){
 
-        if(item.getItemId() == R.id.item1) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Item 1 clicked", Toast.LENGTH_SHORT);
-            toast.show();
-
+        if(item.getItemId() == R.id.popular) {
             new NetworkUtils().execute(POPULAR);
 
-        } else if (item.getItemId() == R.id.item2) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Item 2 clicked", Toast.LENGTH_SHORT);
-            toast.show();
+        } else if (item.getItemId() == R.id.top_rated) {
+//            Toast toast = Toast.makeText(getApplicationContext(), "Item 2 clicked", Toast.LENGTH_SHORT);
+//            toast.show();
             new NetworkUtils().execute(TOP_RATED);
         }
     }
@@ -150,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, data);
 
             try{
-                movieList.clear();
+                movieList.clear(); //clear the movie list each time
 
                 JSONArray results = new JSONObject(data).getJSONArray("results");
 
