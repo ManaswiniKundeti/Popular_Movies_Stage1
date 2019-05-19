@@ -5,4 +5,6 @@
     <string name="activity_details_title">Movie Details</string>
     <string name="activity_detail_rating">Rating</string>
     <string name="activity_details_release_date">Release date</string>
+    <string name="menu_popular_movies">Popular movies</string>
+    <string name="menu_top_rated_movies">Top rated movies</string>
 </resources>

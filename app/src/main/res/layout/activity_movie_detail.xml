@@ -13,6 +13,7 @@
         android:orientation="horizontal"
         android:weightSum="1"
         android:layout_margin="16dp">
+
         <ImageView
             android:id="@+id/movie_detail_image"
             android:layout_width="0dp"

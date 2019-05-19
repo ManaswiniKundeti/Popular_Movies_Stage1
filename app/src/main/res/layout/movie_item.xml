@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/movie_text_view"
         tools:text="Avengers Infinity war"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:gravity="center_horizontal"
         android:maxLines="1"
         android:ellipsize="end"
