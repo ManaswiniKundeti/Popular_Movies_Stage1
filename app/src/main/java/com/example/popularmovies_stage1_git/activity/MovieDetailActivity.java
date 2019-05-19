@@ -23,26 +23,35 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MovieDetailActivity extends AppCompatActivity {
 
-    private ImageView mDetailImage;
-    private TextView mNameTextView;
-    private TextView mSummaryTextView;
-    private TextView mRatingTextView;
-    private TextView mReleaseDateTextView;
+    @BindView(R.id.movie_detail_image)
+    ImageView mDetailImage;
+
+    @BindView(R.id.movie_detail_name)
+    TextView mNameTextView;
+
+    @BindView(R.id.movie_detail_summary)
+    TextView mSummaryTextView;
+
+    @BindView(R.id.movie_detail_rating)
+    TextView mRatingTextView;
+
+    @BindView(R.id.movie_detail_release_date)
+    TextView mReleaseDateTextView;
 
     private static final String TAG = MovieDetailActivity.class.getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
-        setTitle(getString(R.string.activity_details_title));
 
-        mDetailImage = findViewById(R.id.movie_detail_image);
-        mNameTextView = findViewById(R.id.movie_detail_name);
-        mSummaryTextView = findViewById(R.id.movie_detail_summary);
-        mRatingTextView = findViewById(R.id.movie_detail_rating);
-        mReleaseDateTextView = findViewById(R.id.movie_detail_release_date);
+        ButterKnife.bind(this);
+
+        setTitle(getString(R.string.activity_details_title));
 
         Intent intentThatStartedThisActivity = getIntent();
 
