@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">PopularMovies_Stage1_Git</string>
+
+    <string name="activity_main_title">Movies</string>
+    <string name="activity_details_title">Movie Details</string>
+    <string name="activity_detail_rating">Rating</string>
+    <string name="activity_details_release_date">Release date</string>
 </resources>

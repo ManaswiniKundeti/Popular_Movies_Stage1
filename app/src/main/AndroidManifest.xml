@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.MovieDetailActivity"></activity>
+        <activity android:name=".activity.MovieDetailActivity"
+            android:parentActivityName=".activity.MainActivity" />
+
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

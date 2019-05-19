@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setTitle(getString(R.string.activity_main_title));
+
         GridView mGridView = findViewById(R.id.movie_grid_data);
         movieAdapter = new GridAdapter(this, movieList);
         mGridView.setAdapter(movieAdapter);

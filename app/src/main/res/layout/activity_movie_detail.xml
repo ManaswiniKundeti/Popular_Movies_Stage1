@@ -53,7 +53,7 @@
             android:ellipsize="end"
             tools:text="IMDB rating"
             android:layout_weight="0.5"
-            android:text="RATING"/>
+            android:text="@string/activity_detail_rating"/>
         <TextView
             android:id="@+id/movieDetailText_three"
             android:layout_width="0dp"
@@ -78,7 +78,7 @@
             android:ellipsize="end"
             tools:text="Release Data"
             android:layout_weight="0.5"
-            android:text="RELEASE DATE"/>
+            android:text="@string/activity_details_release_date"/>
         <TextView
             android:id="@+id/movieDetailText_four"
             android:layout_width="0dp"

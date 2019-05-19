@@ -36,6 +36,7 @@ public class MovieDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
+        setTitle(getString(R.string.activity_details_title));
 
         mDetailImage = findViewById(R.id.movieDetailImage);
         mDetailTextOne = findViewById(R.id.movieDetailText_one);
