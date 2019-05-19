@@ -31,6 +31,8 @@ public class MovieDetailActivity extends AppCompatActivity {
     private ImageView mDetailImage;
     private TextView mDetailTextOne;
     private TextView mDetailTextTwo;
+    private TextView mDetailTextThree;
+    private TextView mDetailTextFour;
 
     private static final String TAG = MovieDetailActivity.class.getSimpleName();
     @Override
@@ -38,9 +40,11 @@ public class MovieDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
 
+        mDetailImage = findViewById(R.id.movieDetailImage);
         mDetailTextOne = findViewById(R.id.movieDetailText_one);
         mDetailTextTwo = findViewById(R.id.movieDetailText_two);
-        mDetailImage = findViewById(R.id.movieDetailImage);
+        mDetailTextThree = findViewById(R.id.movieDetailText_three);
+        mDetailTextFour = findViewById(R.id.movieDetailText_four);
 
         Intent intentThatStartedThisActivity = getIntent();
 
@@ -106,7 +110,6 @@ public class MovieDetailActivity extends AppCompatActivity {
             Log.d(TAG, data);
 
             try {
-                // movieDetailsList.clear(); //clear the movie list each time
 
                 JSONObject movieData = new JSONObject(data);
 
@@ -114,12 +117,15 @@ public class MovieDetailActivity extends AppCompatActivity {
                 String movieImageUri = "https://image.tmdb.org/t/p/w500" + posterPath;
                 String name = movieData.getString("title");
                 String summary = movieData.getString("overview");
-
+                String userRating = movieData.getString("vote_average"); //7.8
+                String releaseDate = movieData.getString("release_date");
                 Picasso.get()
                         .load(Uri.parse(movieImageUri))
                         .into(mDetailImage);
                 mDetailTextOne.setText(name);
                 mDetailTextTwo.setText(summary);
+                mDetailTextThree.setText(userRating);
+                mDetailTextFour.setText(releaseDate);
 
             } catch(JSONException e){
                 e.printStackTrace();

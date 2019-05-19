@@ -15,9 +15,10 @@
 
     <ImageView
         android:id="@+id/movieDetailImage"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="16dp"/>
 
     <TextView
         android:id="@+id/movieDetailText_one"
@@ -25,7 +26,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
-        android:ellipsize="end"/>
+        android:ellipsize="end"
+        android:layout_margin="16dp"/>
 
     <TextView
         android:id="@+id/movieDetailText_two"
@@ -33,6 +35,58 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
-        android:ellipsize="end"/>
+        android:ellipsize="end"
+        android:layout_margin="16dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/movieDetailText_userRating"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:ellipsize="end"
+            tools:text="IMDB rating"
+            android:layout_weight="0.5"
+            android:text="RATING"/>
+        <TextView
+            android:id="@+id/movieDetailText_three"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            tools:text="9.0"
+            android:layout_weight="0.5"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/movieDetailText_releaseDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:ellipsize="end"
+            tools:text="Release Data"
+            android:layout_weight="0.5"
+            android:text="RELEASE DATE"/>
+        <TextView
+            android:id="@+id/movieDetailText_four"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            tools:text="9/12/2019"
+            android:layout_weight="0.5" />
+    </LinearLayout>
+
 
 </LinearLayout>
