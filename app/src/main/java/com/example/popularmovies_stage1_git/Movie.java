@@ -5,11 +5,15 @@ import android.support.annotation.NonNull;
 class Movie {
     private final String mMovieName;
     private final String mMovieImageUri;
+    private final String mMovieId;
 
-    Movie(String movieName, String movieImageUri) {
+
+    Movie(String movieName, String movieImageUri, String movieId) {
         this.mMovieName = movieName;
         this.mMovieImageUri = movieImageUri;
+        this.mMovieId = movieId;
     }
+
 
     @NonNull
     String getMovieName() {
@@ -20,4 +24,8 @@ class Movie {
     String getMovieImageUri() {
         return mMovieImageUri;
     }
+
+
+    @NonNull
+    public String getMovieId() { return mMovieId; }
 }

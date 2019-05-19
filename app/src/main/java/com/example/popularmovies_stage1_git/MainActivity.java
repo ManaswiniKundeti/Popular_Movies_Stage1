@@ -1,5 +1,7 @@
 package com.example.popularmovies_stage1_git;
 
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -52,8 +54,16 @@ public class MainActivity extends AppCompatActivity {
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Context context = MainActivity.this;
+                Class destinationActivity = MovieDetailActivity.class;
+                Intent createMovieDetailActivityIntent = new Intent(context, destinationActivity);
+
                 Movie selectedMovie = movieAdapter.getItem(position);
-                
+                String movieId = selectedMovie.getMovieId();
+
+                createMovieDetailActivityIntent.putExtra(Intent.EXTRA_TEXT,movieId);
+                startActivity(createMovieDetailActivityIntent);
+
             }
         });
 
@@ -155,8 +165,9 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject firstMovie = results.getJSONObject(iter);
                     String name = firstMovie.getString("title");
                     String posterPath = firstMovie.getString("poster_path");
+                    String id = firstMovie.getString("id");
                     String movieImageUri = "https://image.tmdb.org/t/p/w500"+posterPath;
-                    movieList.add(new Movie(name, movieImageUri));
+                    movieList.add(new Movie(name, movieImageUri, id));
                 }
                 movieAdapter.notifyDataSetChanged();
 
