@@ -1,92 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.MovieDetailActivity"
     android:id="@+id/movie_details"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_margin="16dp">
+        <ImageView
+            android:id="@+id/movie_detail_image"
+            android:layout_width="0dp"
+            android:layout_height="225dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.4"/>
 
-    <ImageView
-        android:id="@+id/movieDetailImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="16dp"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="0.6"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/movie_detail_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:ellipsize="end"
+                tools:text="Avengers End Game"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:maxLines="2"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/movieDetailText_userRating"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:ellipsize="end"
+                    android:layout_weight="0.5"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:text="@string/activity_detail_rating" />
+                <TextView
+                    android:id="@+id/movie_detail_rating"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    tools:text="9.0"
+                    android:layout_weight="0.5"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/movieDetailText_releaseDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:ellipsize="end"
+                    tools:text="Release Data"
+                    android:layout_weight="0.5"
+                    android:text="@string/activity_details_release_date"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/movie_detail_release_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    tools:text="9/12/2019"
+                    android:layout_weight="0.5" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
 
     <TextView
-        android:id="@+id/movieDetailText_one"
+        android:id="@+id/movie_detail_summary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:ellipsize="end"
-        android:layout_margin="16dp"/>
-
-    <TextView
-        android:id="@+id/movieDetailText_two"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:ellipsize="end"
-        android:layout_margin="16dp"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:weightSum="1">
-
-        <TextView
-            android:id="@+id/movieDetailText_userRating"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:ellipsize="end"
-            tools:text="IMDB rating"
-            android:layout_weight="0.5"
-            android:text="@string/activity_detail_rating"/>
-        <TextView
-            android:id="@+id/movieDetailText_three"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            tools:text="9.0"
-            android:layout_weight="0.5"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:weightSum="1">
-
-        <TextView
-            android:id="@+id/movieDetailText_releaseDate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:ellipsize="end"
-            tools:text="Release Data"
-            android:layout_weight="0.5"
-            android:text="@string/activity_details_release_date"/>
-        <TextView
-            android:id="@+id/movieDetailText_four"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            tools:text="9/12/2019"
-            android:layout_weight="0.5" />
-    </LinearLayout>
-
-
+        android:layout_margin="16dp"
+        android:textSize="18sp"
+        tools:text="This is some random description for a movie!!"/>
 </LinearLayout>

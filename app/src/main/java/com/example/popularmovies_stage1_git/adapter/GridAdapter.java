@@ -44,7 +44,7 @@ public class GridAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).
-                    inflate(R.layout.grid_adapter, parent, false);
+                    inflate(R.layout.movie_item, parent, false);
         }
 
         TextView movieTextView = convertView.findViewById(R.id.movie_text_view);
