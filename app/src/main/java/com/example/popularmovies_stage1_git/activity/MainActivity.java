@@ -2,8 +2,6 @@ package com.example.popularmovies_stage1_git.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,24 +12,21 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.popularmovies_stage1_git.R;
 import com.example.popularmovies_stage1_git.adapter.GridAdapter;
 import com.example.popularmovies_stage1_git.model.Movie;
+import com.example.popularmovies_stage1_git.model.MovieResult;
+import com.example.popularmovies_stage1_git.retrofit.MovieService;
+import com.example.popularmovies_stage1_git.retrofit.RetrofitInstance;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     public List<Movie> movieList = new ArrayList<Movie>();
     GridAdapter movieAdapter;
     private ProgressBar movieProgressBar;
+
+    private MovieService mMovieService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent createMovieDetailActivityIntent = new Intent(context, destinationActivity);
 
                 Movie selectedMovie = movieAdapter.getItem(position);
-                String movieId = selectedMovie.getMovieId();
+                String movieId = selectedMovie.getmMovieId();
 
                 createMovieDetailActivityIntent.putExtra(Intent.EXTRA_TEXT,movieId);
                 startActivity(createMovieDetailActivityIntent);
@@ -85,12 +82,12 @@ public class MainActivity extends AppCompatActivity {
     public void onItemClick(MenuItem item){
 
         if(item.getItemId() == R.id.popular) {
-            new NetworkUtils().execute(POPULAR);
+            getMovies(POPULAR);
 
         } else if (item.getItemId() == R.id.top_rated) {
 //            Toast toast = Toast.makeText(getApplicationContext(), "Item 2 clicked", Toast.LENGTH_SHORT);
 //            toast.show();
-            new NetworkUtils().execute(TOP_RATED);
+            getMovies(TOP_RATED);
         }
     }
 
@@ -98,87 +95,41 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (movieList.isEmpty()) {
-            new NetworkUtils().execute(POPULAR);
+            getMovies(POPULAR);
         }
+    }
+
+    private void getMovies(String filter) {
+        if (mMovieService == null) {
+            mMovieService = RetrofitInstance.getRetorfitInstance().create(MovieService.class);
+        }
+
+        Call<MovieResult> call = mMovieService.getMovies(filter, RetrofitInstance.API_KEY);
+        toggleProgressBar(true);
+
+        call.enqueue(new Callback<MovieResult>() {
+            @Override
+            public void onResponse(Call<MovieResult> call, Response<MovieResult> response) {
+                toggleProgressBar(false);
+                movieList.clear();
+
+                if (response.isSuccessful()&& response.body() != null) {
+                    movieList.addAll(response.body().getMovieList());
+                    movieAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MovieResult> call, Throwable t) {
+                Log.e(TAG, "Error fetching movies", t);
+                Toast.makeText(MainActivity.this,
+                        "Error fetching movies",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void toggleProgressBar(boolean isLoading) {
         movieProgressBar.setVisibility(isLoading ? View.VISIBLE : View.GONE);
-    }
-
-    public class NetworkUtils extends AsyncTask<String, Void, String>{
-
-        final static String BASE_URL = "http://api.themoviedb.org/3/movie";
-
-        final static String API_KEY = "fb818f2b738d211782879135fc73eed7";
-
-
-        public URL buildUrl(String string) {
-            Uri builtUri = Uri.parse(BASE_URL).buildUpon()
-                    .appendPath(string)
-                    .appendQueryParameter("api_key",API_KEY)
-                    .build();
-            URL url = null;
-            try {
-                url = new URL(builtUri.toString());
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            return url;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            toggleProgressBar(true);
-        }
-
-        @Override
-        protected String doInBackground(String... strings) {
-            String myParam = strings[0];
-            URL url = buildUrl(myParam);
-            StringBuilder sb = new StringBuilder();
-            try {
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                InputStream in = urlConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
-                String line = "";
-                while(null != line){
-                    line = bufferedReader.readLine();
-                    sb.append(line);
-                }
-            }catch(MalformedURLException e){
-                e.printStackTrace();
-            }catch(IOException e){
-                e.printStackTrace();
-            }
-            return sb.toString();
-        }
-
-        @Override
-        protected void onPostExecute(String data) {
-            super.onPostExecute(data);
-            toggleProgressBar(false);
-            Log.d(TAG, data);
-
-            try{
-                movieList.clear(); //clear the movie list each time
-
-                JSONArray results = new JSONObject(data).getJSONArray("results");
-
-                for(int iter = 0; iter < results.length(); iter++){
-                    JSONObject firstMovie = results.getJSONObject(iter);
-                    String name = firstMovie.getString("title");
-                    String posterPath = firstMovie.getString("poster_path");
-                    String id = firstMovie.getString("id");
-                    String movieImageUri = "https://image.tmdb.org/t/p/w500"+posterPath;
-                    movieList.add(new Movie(name, movieImageUri, id));
-                }
-                movieAdapter.notifyDataSetChanged();
-
-            } catch(JSONException e){
-                e.printStackTrace();
-            }
-        }
     }
 }

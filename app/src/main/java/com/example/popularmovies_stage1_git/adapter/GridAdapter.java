@@ -51,9 +51,9 @@ public class GridAdapter extends BaseAdapter {
         ImageView movieImageView = convertView.findViewById(R.id.movie_image_view);
 
         Movie movie = movieList.get(position);
-        movieTextView.setText(movie.getMovieName());
+        movieTextView.setText(movie.getmMovieName());
         Picasso.get()
-                .load(Uri.parse(movie.getMovieImageUri()))
+                .load(Uri.parse("https://image.tmdb.org/t/p/w500" + movie.getmMovieImageUri()))
                 .into(movieImageView);
 
         return convertView;
