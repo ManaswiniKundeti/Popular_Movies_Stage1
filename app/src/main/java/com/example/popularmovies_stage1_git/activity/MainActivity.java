@@ -1,4 +1,4 @@
-package com.example.popularmovies_stage1_git;
+package com.example.popularmovies_stage1_git.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
+
+import com.example.popularmovies_stage1_git.R;
+import com.example.popularmovies_stage1_git.adapter.GridAdapter;
+import com.example.popularmovies_stage1_git.model.Movie;
 
 import org.json.JSONArray;
 import org.json.JSONException;

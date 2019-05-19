@@ -1,4 +1,4 @@
-package com.example.popularmovies_stage1_git;
+package com.example.popularmovies_stage1_git.activity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -6,13 +6,12 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.popularmovies_stage1_git.R;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,8 +22,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MovieDetailActivity extends AppCompatActivity {
 

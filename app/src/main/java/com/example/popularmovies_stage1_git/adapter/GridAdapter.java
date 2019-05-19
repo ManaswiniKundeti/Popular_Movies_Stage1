@@ -1,4 +1,4 @@
-package com.example.popularmovies_stage1_git;
+package com.example.popularmovies_stage1_git.adapter;
 
 import android.content.Context;
 import android.net.Uri;
@@ -9,6 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.popularmovies_stage1_git.R;
+import com.example.popularmovies_stage1_git.model.Movie;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -18,7 +20,7 @@ public class GridAdapter extends BaseAdapter {
     private final Context context;
     private final List<Movie> movieList;
 
-    GridAdapter(Context context, List<Movie> movieList) {
+    public GridAdapter(Context context, List<Movie> movieList) {
         this.context = context;
         this.movieList = movieList;
     }

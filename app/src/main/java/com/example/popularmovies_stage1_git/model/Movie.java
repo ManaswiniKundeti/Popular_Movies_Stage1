@@ -1,14 +1,14 @@
-package com.example.popularmovies_stage1_git;
+package com.example.popularmovies_stage1_git.model;
 
 import android.support.annotation.NonNull;
 
-class Movie {
+public class Movie {
     private final String mMovieName;
     private final String mMovieImageUri;
     private final String mMovieId;
 
 
-    Movie(String movieName, String movieImageUri, String movieId) {
+    public Movie(@NonNull String movieName, @NonNull String movieImageUri, @NonNull String movieId) {
         this.mMovieName = movieName;
         this.mMovieImageUri = movieImageUri;
         this.mMovieId = movieId;
@@ -16,12 +16,12 @@ class Movie {
 
 
     @NonNull
-    String getMovieName() {
+    public String getMovieName() {
         return mMovieName;
     }
 
     @NonNull
-    String getMovieImageUri() {
+    public String getMovieImageUri() {
         return mMovieImageUri;
     }
 
